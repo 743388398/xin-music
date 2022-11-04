@@ -9,11 +9,13 @@ WORKDIR /app
 COPY src /app/src
 
 # 将pom.xml文件，拷贝到工作目录下
-COPY settings.xml pom.xml /app/
+#COPY settings.xml pom.xml /app/
+COPY pom.xml /app/
 
 # 执行代码编译命令
 # 自定义settings.xml, 选用国内镜像源以提高下载速度
-RUN mvn -s /app/settings.xml -f /app/pom.xml clean package
+RUN #mvn -s /app/settings.xml -f /app/pom.xml clean package
+RUN mvn -f /app/pom.xml clean package
 
 # 选择运行时基础镜像
 FROM alpine:3.13
@@ -27,7 +29,7 @@ ENV DATABASE_NAME xin-music
 # RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shanghai > /etc/timezone
 
 # 使用 HTTPS 协议访问容器云调用证书安装
-RUN apk add ca-certificates
+# RUN apk add ca-certificates
 
 # 安装依赖包，如需其他依赖包，请到alpine依赖包管理(https://pkgs.alpinelinux.org/packages?name=php8*imagick*&branch=v3.13)查找。
 # 选用国内镜像源以提高下载速度
