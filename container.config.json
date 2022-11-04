@@ -1,0 +1,15 @@
+{
+  "containerPort": 80,
+  "minNum": 0,
+  "maxNum": 5,
+  "cpu": 0.25,
+  "mem": 1,
+  "policyType": "cpu",
+  "policyThreshold": 60,
+  "envParams": {},
+  "customLogs": "stdout",
+  "dataBaseName":"xin-music",
+  "executeSQLs":[
+    "CREATE DATABASE IF NOT EXISTS xin-music;"
+    ]
+}
